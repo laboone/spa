@@ -1,0 +1,17 @@
+{
+    "version": "0.1.0",
+    "command": "gulp",
+    "isShellCommand": true,
+    "args": [
+        "--no-color"
+    ],
+    // ref http://dev.ivogabe.com/using-vscode-with-gulp-typescript/
+    "tasks": [
+        {
+            "taskName": "scripts",
+            "isBuildCommand": true,
+            "args": [],
+            "problemMatcher": ["$tsc"]
+        }
+    ]
+}
