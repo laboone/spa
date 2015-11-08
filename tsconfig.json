@@ -2,13 +2,13 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es5",
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "experimentalDecorators": false,
         "sourceMap": true,
         "declaration": false,
         "noEmitOnError": true
     },
     "files": [
-        "scripts/app.ts", "typings/tsd.d.ts"
+        "scripts/app.ts", "scripts/Spa.ts", "typings/tsd.d.ts"
     ]
 }

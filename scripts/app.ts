@@ -1,6 +1,6 @@
-import greeter = require('./greeter');
+import chat = require('./Spa');
 import $ = require('jquery');
 
 $(() => {
-	$(document.body).html(greeter("hello hello"));
+	new chat.Spa($('#spa'));
 });
