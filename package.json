@@ -4,8 +4,6 @@
   "description": "study spa",
   "main": "gulpfile.js",
   "dependencies": {
-    "gulp": "^3.9.0",
-    "gulp-typescript": "^2.9.2",
     "jquery": "^2.1.4",
     "ts-loader": "^0.6.1",
     "typescript": "^1.6.2"
