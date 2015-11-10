@@ -9,6 +9,6 @@
         "noEmitOnError": true
     },
     "files": [
-        "scripts/app.ts", "scripts/Spa.ts", "typings/tsd.d.ts"
+        "js/app.ts", "js/Spa.ts", "typings/tsd.d.ts"
     ]
 }
