@@ -22,9 +22,11 @@ export class SpaShell {
 		chat_extend_time: 1000,
 		chat_retract_time: 300,
 		chat_extedn_height: 450,
-		chat_retract_height: 15
+		chat_retract_height: 15,
+		chat_extended_title: 'Click to retract',
+		chat_retracted_title: 'Click to exted'
 	};
-	private stateMap: { $container?: JQuery } = {};
+	private stateMap: { $container?: JQuery, is_chat_retracted: boolean} = {is_chat_retracted: true};
 	private jqueryMap: { $container?: JQuery, $chat?: JQuery } = {};
 		
 	/**
@@ -34,16 +36,20 @@ export class SpaShell {
 		this.initModule($container)
 	}
 
-	private setJqueryMap(): void {
-		var $container = this.stateMap.$container;
-		this.jqueryMap.$container = $container;
-		this.jqueryMap.$chat = $container.find('.spa-shell-chat');
-	}
-
 	private initModule($container: JQuery): void {
 		this.stateMap.$container = $container;
 		$container.html(this.configMap.main_html);
 		this.setJqueryMap();
+		this.stateMap.is_chat_retracted = true;
+		this.jqueryMap.$chat
+			.attr('title', this.configMap.chat_retracted_title)
+			.click(this, this.onClickChat);
+	}
+	
+	private setJqueryMap(): void {
+		var $container = this.stateMap.$container;
+		this.jqueryMap.$container = $container;
+		this.jqueryMap.$chat = $container.find('.spa-shell-chat');
 	}
 
 	public toggleChat(do_extend: boolean, callback?: Function): boolean {
@@ -58,16 +64,32 @@ export class SpaShell {
 			this.jqueryMap.$chat.animate(
 				{ height: this.configMap.chat_extedn_height },
 				this.configMap.chat_extend_time,
-				() => { if (callback) { callback(this.jqueryMap.$chat); } }
+				() => {
+					this.jqueryMap.$chat.attr('title', this.configMap.chat_extended_title);
+					this.stateMap.is_chat_retracted = false;
+					if (callback) {
+						callback(this.jqueryMap.$chat);
+					} }
 			);
 			return true;
 		}
 		this.jqueryMap.$chat.animate(
 			{ height: this.configMap.chat_retract_height },
 			this.configMap.chat_retract_time,
-			() => { if (callback) { callback(this.jqueryMap.$chat); } }
+			() => {
+				this.jqueryMap.$chat.attr('title', this.configMap.chat_retracted_title);
+					this.stateMap.is_chat_retracted = true;
+				if (callback) {
+					callback(this.jqueryMap.$chat); 
+				} 
+			}
 		);
 		return true;
+	}
+	
+	private onClickChat(event: JQueryEventObject) :boolean{
+		event.data.toggleChat(event.data.stateMap.is_chat_retracted);
+		return false
 	}
 
 }
