@@ -19,8 +19,8 @@ export class SpaShell {
 		<div class="spa-shell-chat"></div>
 		<div class="spa-shell-modal"></div>
 		`,
-		chat_extend_time: 300,
-		chat_retract_time: 300,
+		chat_extend_time: 100,
+		chat_retract_time: 100,
 		chat_extedn_height: 450,
 		chat_retract_height: 15,
 		chat_extended_title: 'Click to retract',
@@ -88,8 +88,14 @@ export class SpaShell {
 	}
 	
 	private onClickChat(event: JQueryEventObject) :boolean{
-		event.data.toggleChat(event.data.stateMap.is_chat_retracted);
+		// 下見てjquerが呼べてる理由を理解
+		// http://www.jbrantly.com/typescript-and-webpack/
+		
+		
+		var _this = event.data;
+		if(_this.toggleChat(_this.stateMap.is_chat_retracted)){
+			$.uriAnchor.setAnchor({chat: _this.stateMap.is_chat_retracted ? 'open' : 'close'})
+		}
 		return false
 	}
-
 }
