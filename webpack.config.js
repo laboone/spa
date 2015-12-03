@@ -10,6 +10,13 @@ module.exports = {
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
   },
+    // plugins: [
+    //     new webpack.ProvidePlugin({
+    //         $: "jquery",
+    //         jQuery: "jquery",
+    //         "window.jQuery": "jquery"
+    //     })
+    // ],
   // Add minification
   // plugins: [
   //   new webpack.optimize.UglifyJsPlugin()
