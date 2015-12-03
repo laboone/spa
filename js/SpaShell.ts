@@ -87,12 +87,6 @@ export class SpaShell {
 	}
 	
 	private onClickChat(event: JQueryEventObject) :boolean{
-		// 下見てjquerが呼べてる理由を理解
-		// http://www.jbrantly.com/typescript-and-webpack/
-		
-		// ToDo: .htmlで普通にscriptで読み込む。
-		//        現状、htmlで$.uriAnchorだったら動くが、下は動かない。
-		//        ここから確認するようにする
 		var _this = event.data;
 		if(_this.toggleChat(_this.stateMap.is_chat_retracted)){
 			console.log("---" + $.uriAnchor);
