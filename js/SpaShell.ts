@@ -1,4 +1,5 @@
 /// <reference path="../typings/jquery/jquery.d.ts" />
+import spaChat = require('./SpaChat')
 
 export class SpaShell {
 
@@ -50,6 +51,11 @@ export class SpaShell {
 		$.uriAnchor.configModule({
 			schema_map : this.configMap.anchor_shema_map
 		});
+		
+		
+		var chat = new spaChat.SpaChat()
+		chat.configModule({});
+		chat.initModule(this.jqueryMap.$chat);
 		
 		$(window).bind('hashchange', this, this.onHashchange)
 				 .trigger('hashchange');
